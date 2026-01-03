@@ -3,3 +3,29 @@ export interface FetchResult<T> {
     loading: boolean;
     error: Error | null;
 }
+
+export interface Country {
+    name: Name;
+    flags: Flags;
+    currencies: string[];
+    capital: string[];
+    region: string;
+    subregion: string;
+    languages: string[];
+    borders: string[];
+    population: number;
+    tld: string[];
+    code: string[];
+}
+
+export interface Flags {
+    png: string;
+    svg: string;
+    alt: string;
+}
+
+export interface Name {
+    common: string;
+    official: string;
+    nativeName: string[];
+}

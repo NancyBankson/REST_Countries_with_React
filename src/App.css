@@ -1,6 +1,5 @@
 #root {
-  max-width: 1280px;
-  padding: 2rem;
+  background-color: hsl(0, 0%, 98%);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -11,8 +10,12 @@
 
 #header-bar {
   display: flex;
- align-items: center;
- justify-content: end;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  background-color: (0, 0%, 100%);
+  border: 1px solid transparent;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
 }
 
 #header-bar h1 {

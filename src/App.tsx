@@ -1,13 +1,22 @@
-import { useState } from 'react'
+// import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import { Headerbar } from './components/Headerbar'
 import './App.css'
+import { HomePage } from './pages/HomePage/HomePage'
+// import { CountryContext } from './context/CountryContext'
+// import type { Country } from './types'
 
 function App() {
+  // const [countries, setCountries] = useState<Country[]>([]);
 
   return (
     <>
-      <Headerbar />
-      <h3>REST Countries API</h3>
+      {/* <CountryContext.Provider value={{ countries }}> */}
+        <Headerbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      {/* </CountryContext.Provider> */}
     </>
   )
 }
