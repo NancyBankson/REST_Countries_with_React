@@ -33,4 +33,5 @@ export interface Name {
 export interface SearchContextType {
     filteredCountries: Country[];
     onSearch: (searchValue: string) => void;
+    onFilter: (filterValue: string) => void;
 }

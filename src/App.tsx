@@ -39,18 +39,29 @@ function App() {
   // Return countries that include search string
   function onSearch(searchValue: string) {
     const filterCountries = countries.filter(country => {
-      if (searchValue) {
-        if (country.name.common.toLowerCase().includes(searchValue.toLowerCase())) {
-          return country;
-        }
+      if (searchValue === "") {
+        return country;
+      } else if (country.name.common.toLowerCase().includes(searchValue.toLowerCase())) {
+        return country;
       }
     })
     setFilteredCountries(filterCountries);
   }
 
+  function onFilter(filterValue: string) {
+    const filterCountries = countries.filter(country => {
+      if (filterValue === "") {
+        return country;
+      } else if (country.region === filterValue) {
+        return country;
+      }
+    })
+    setFilteredCountries(filterCountries)
+  }
+
   return (
     <>
-      <SearchContext.Provider value={{ filteredCountries, onSearch }}>
+      <SearchContext.Provider value={{ filteredCountries, onSearch, onFilter }}>
         <Headerbar />
         <Routes>
           <Route path="/" element={<HomePage />} />

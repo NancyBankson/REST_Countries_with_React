@@ -10,16 +10,20 @@ export function Searchbar() {
         )
     }
 
-    const { onSearch } = newSearchContext;
+    const { onSearch, onFilter } = newSearchContext;
 
     const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
         onSearch(event.target.value);
     };
 
+    const handleFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        onFilter(event.target.value);
+    }
+
     return (
         <div id="search-bar">
             <input type="text" id="name-search" role="search" placeholder="🔍    Search for a country..." onChange={handleSearch}/>
-            <select id="region-filter">
+            <select id="region-filter" onChange={handleFilter}>
                 <option value="">Filter By Region</option>
                 <option value="Africa">Africa</option>
                 <option value="Americas">Americas</option>
