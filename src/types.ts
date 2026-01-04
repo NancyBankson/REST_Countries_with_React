@@ -29,3 +29,8 @@ export interface Name {
     official: string;
     nativeName: string[];
 }
+
+export interface SearchContextType {
+    filteredCountries: Country[];
+    onSearch: (searchValue: string) => void;
+}

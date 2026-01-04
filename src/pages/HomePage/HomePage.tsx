@@ -1,40 +1,32 @@
-import type { Country } from "../../types";
-import { useFetch } from "../../hooks/useFetch";
-import { useState } from "react";
+import { useContext } from "react";
 import { CountryCard } from "../../components/CountryCard";
+import { Searchbar } from "../../components/Searchbar";
+import { SearchContext } from "../../context/SearchContext";
 
 export function HomePage() {
-  const [countries, setCountries] = useState<Country[]>([]);
-  const [isFetched, setIsFetched] = useState(false);
-  const { data, loading, error } = useFetch<Country[]>("https://restcountries.com/v3.1/all?status=true&fields=name,population,region,capital,flags,subregion,currencies,languages,borders,tld");
+  const newCountries = useContext(SearchContext);
 
-  if (loading) {
+  if (!newCountries) {
     return (
-      <div className="loading">
-        Loading recipes...
-        {/* <Spinner /> */}
-      </div>
+      <p>Error</p>
     )
   }
-  if (error) {
+
+  const { filteredCountries } = newCountries;
+
+  if (!filteredCountries) {
     return (
       <div>
-        {/* <ErrorMessage /> */}
-        Error: {error.message}
+        <p>Error</p>
       </div>
     )
-  }
-
-
-  if ((data) && (!isFetched)) {
-    setCountries(data!);
-    setIsFetched(true); 
   }
 
   return (
     <>
+      <Searchbar />
       <div id="card-holder">
-        {countries.map((country) => (
+        {filteredCountries.map((country) => (
           <CountryCard
             key={country.name.common}
             country={country}
