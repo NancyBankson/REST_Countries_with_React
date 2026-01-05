@@ -4,6 +4,7 @@ import { Headerbar } from './components/Headerbar'
 import { useFetch } from './hooks/useFetch'
 import './App.css'
 import { HomePage } from './pages/HomePage/HomePage'
+import { DetailPage } from './pages/DetailPage/DetailPage'
 import { SearchContext } from './context/SearchContext'
 import type { Country } from './types'
 
@@ -61,10 +62,11 @@ function App() {
 
   return (
     <>
-      <SearchContext.Provider value={{ filteredCountries, onSearch, onFilter }}>
+      <SearchContext.Provider value={{ filteredCountries, countries, onSearch, onFilter }}>
         <Headerbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/country/:name" element={<DetailPage />} />
         </Routes>
       </SearchContext.Provider>
     </>

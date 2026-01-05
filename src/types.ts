@@ -32,6 +32,7 @@ export interface Name {
 
 export interface SearchContextType {
     filteredCountries: Country[];
+    countries: Country[];
     onSearch: (searchValue: string) => void;
     onFilter: (filterValue: string) => void;
 }
