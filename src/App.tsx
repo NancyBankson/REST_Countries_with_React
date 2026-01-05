@@ -6,15 +6,18 @@ import './App.css'
 import { HomePage } from './pages/HomePage/HomePage'
 import { DetailPage } from './pages/DetailPage/DetailPage'
 import { SearchContext } from './context/SearchContext'
-import type { Country } from './types'
+import type { Country, Codes } from './types'
 
 function App() {
   const [countries, setCountries] = useState<Country[]>([]);
   const [filteredCountries, setFilteredCountries] = useState<Country[]>(countries);
   const [isFetched, setIsFetched] = useState(false);
-  const { data, loading, error } = useFetch<Country[]>("https://restcountries.com/v3.1/all?status=true&fields=name,population,region,capital,flags,subregion,currencies,languages,borders,tld");
+  const [codes, setCodes] = useState<Codes[]>([]);
+  const [codesAreFetched, setCodesAreFetched] = useState(false);
+  const { data: dataCountries, loading: loadingCountries, error: errorCountries } = useFetch<Country[]>("https://restcountries.com/v3.1/all?status=true&fields=name,population,region,capital,flags,subregion,currencies,languages,borders,tld");
+  const { data: dataCodes, loading: loadingCodes, error: errorCodes } = useFetch<Codes[]>("https://restcountries.com/v3.1/all?status=true&fields=name,cca3");
 
-  if (loading) {
+  if (loadingCountries) {
     return (
       <div className="loading">
         Loading countries...
@@ -22,19 +25,41 @@ function App() {
       </div>
     )
   }
-  if (error) {
+  if (errorCountries) {
     return (
       <div>
         {/* <ErrorMessage /> */}
-        Error: {error.message}
+        Error: {errorCountries.message}
       </div>
     )
   }
 
-  if ((data) && (!isFetched)) {
-    setCountries(data!);
+  if ((dataCountries) && (!isFetched)) {
+    setCountries(dataCountries!);
     setIsFetched(true);
-    setFilteredCountries(data!);
+    setFilteredCountries(dataCountries!);
+  }
+
+  if (loadingCodes) {
+    return (
+      <div className="loading">
+        Loading codes...
+        {/* <Spinner /> */}
+      </div>
+    )
+  }
+  if (errorCodes) {
+    return (
+      <div>
+        {/* <ErrorMessage /> */}
+        Error: {errorCodes.message}
+      </div>
+    )
+  }
+
+  if ((dataCodes) && (!codesAreFetched)) {
+    setCodes(dataCodes!);
+    setCodesAreFetched(true);
   }
 
   // Return countries that include search string
@@ -62,7 +87,7 @@ function App() {
 
   return (
     <>
-      <SearchContext.Provider value={{ filteredCountries, countries, onSearch, onFilter }}>
+      <SearchContext.Provider value={{ filteredCountries, countries, codes, onSearch, onFilter }}>
         <Headerbar />
         <Routes>
           <Route path="/" element={<HomePage />} />

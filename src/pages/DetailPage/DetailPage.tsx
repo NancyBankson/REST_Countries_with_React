@@ -1,11 +1,14 @@
 // import { CountryDetail } from "../../components/CountryDetail";
 import { useParams, useNavigate } from "react-router-dom"
 import { fetchCountryByName } from "../../utils/utils";
+import { useContext } from "react";
+import { SearchContext } from "../../context/SearchContext";
 
 export function DetailPage() {
     const { name } = useParams();
     const navigate = useNavigate();
     const country = fetchCountryByName(name);
+    const newCodes = useContext(SearchContext);
 
     if (!country) return (
         <div>
@@ -14,6 +17,14 @@ export function DetailPage() {
             <button onClick={() => navigate(-1)}>Go Back</button>
         </div>
     )
+
+    if (!newCodes) {
+        return (
+            <p>Error</p>
+        )
+    }
+
+    const { codes } = newCodes;
 
     let nativeNameToDisplayObject = country.name.nativeName;
     let nativeNameToDisplayArray = nativeNameToDisplayObject
@@ -38,6 +49,19 @@ export function DetailPage() {
     for (let i = 1; i < languagesToDisplayArray.length; i++) {
         languagesToDisplay = languagesToDisplay + ", " + languagesToDisplayArray[i];
     }
+
+    let borderCodesArray = country.borders;
+    let borderNamesArray = [];
+    for (let i = 0; i < borderCodesArray.length; i++) {
+        let codeFromTarget = borderCodesArray[i];
+        for (let j = 0; j < codes.length; j++) {
+            let codeToCompare = codes[j]!.cca3;
+            if (codeFromTarget === codeToCompare) {
+                borderNamesArray.push(codes[j]?.name.common);
+            }
+        }
+    }
+    console.log(borderNamesArray);
 
     return (
         <div key={country.name.common}>
