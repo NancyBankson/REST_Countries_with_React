@@ -66,7 +66,7 @@ export function DetailPage() {
     }
 
     return (
-        <div key={country.name.common}>
+        <div key={country.name.common} className="big-display">
             <img src={country.flags.png} alt={country.flags.alt} />
             <div id="display-body">
                 <h2 className="card-title">{country.name.common}</h2>
@@ -89,7 +89,7 @@ export function DetailPage() {
                     <div id="button-holder">
                         {borderNamesArray.map((border, index) => (
                             <Link to={`/country/${border}`} key={index}>
-                                <button>{border}</button>
+                                <button className="new-country" role="button">{border}</button>
                             </Link>
                         ))}
                     </div>
