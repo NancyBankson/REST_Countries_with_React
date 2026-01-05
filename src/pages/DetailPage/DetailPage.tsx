@@ -3,20 +3,23 @@ import { useParams, useNavigate } from "react-router-dom"
 import { fetchCountryByName } from "../../utils/utils";
 import { useContext } from "react";
 import { SearchContext } from "../../context/SearchContext";
+import { Link } from "react-router-dom";
+import type { Country } from "../../types";
 
 export function DetailPage() {
     const { name } = useParams();
     const navigate = useNavigate();
-    const country = fetchCountryByName(name);
+    let country: Country;
+    const countryData = fetchCountryByName(name);
     const newCodes = useContext(SearchContext);
 
-    if (!country) return (
+    if (countryData === "Error") { return (
         <div>
             <h2>Country Detail Page</h2>
             <p>Country not found</p>
             <button onClick={() => navigate(-1)}>Go Back</button>
         </div>
-    )
+    )} else country = countryData;
 
     if (!newCodes) {
         return (
@@ -45,13 +48,13 @@ export function DetailPage() {
     }
     let languargesToDisplayObject = country.languages;
     let languagesToDisplayArray = Object.values(languargesToDisplayObject);
-    let languagesToDisplay = languagesToDisplayArray[0];
+    let languagesToDisplay: string = languagesToDisplayArray[0];
     for (let i = 1; i < languagesToDisplayArray.length; i++) {
         languagesToDisplay = languagesToDisplay + ", " + languagesToDisplayArray[i];
     }
 
     let borderCodesArray = country.borders;
-    let borderNamesArray = [];
+    let borderNamesArray: string[] = [];
     for (let i = 0; i < borderCodesArray.length; i++) {
         let codeFromTarget = borderCodesArray[i];
         for (let j = 0; j < codes.length; j++) {
@@ -61,7 +64,6 @@ export function DetailPage() {
             }
         }
     }
-    console.log(borderNamesArray);
 
     return (
         <div key={country.name.common}>
@@ -84,6 +86,13 @@ export function DetailPage() {
                 </div>
                 <div id="borders">
                     <p className="button-text">Border Countries: </p>
+                    <div id="button-holder">
+                        {borderNamesArray.map((border, index) => (
+                            <Link to={`/country/${border}`} key={index}>
+                                <button>{border}</button>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
