@@ -6,7 +6,7 @@ import './App.css'
 import { HomePage } from './pages/HomePage/HomePage'
 import { DetailPage } from './pages/DetailPage/DetailPage'
 import { SearchContext } from './context/SearchContext'
-import type { Country, Codes, Theme } from './types'
+import type { Country, Codes } from './types'
 import { ThemeContext } from './context/ThemeContext'
 import { useLocalStorage } from './hooks/useLocalStorage'
 

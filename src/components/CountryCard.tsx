@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
 export function CountryCard({ country }: { country: Country }) {
-    const { theme, toggleTheme } = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext);
     const cardClasses = `card ${(theme === "Dark") ? 'dark-mode' : undefined}`;
 
     return (

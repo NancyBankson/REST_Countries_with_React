@@ -38,6 +38,11 @@ export interface SearchContextType {
     onFilter: (filterValue: string) => void;
 }
 
+export interface ThemeContextType {
+    theme: Theme;
+    toggleTheme: () => void;
+}
+
 export interface Codes {
     cca3: string;
     name: Name;
