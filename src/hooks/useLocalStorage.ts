@@ -4,6 +4,9 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
     const [storedValue, setStoredValue] = useState (() => {
         try {
             const retrievedData = localStorage.getItem(key);
+            if (!retrievedData || retrievedData === "undefined") {
+                return initialValue;
+            }
             return retrievedData ? JSON.parse(retrievedData) : initialValue;
         } catch (error) {
             console.log(error);

@@ -6,7 +6,7 @@ import './App.css'
 import { HomePage } from './pages/HomePage/HomePage'
 import { DetailPage } from './pages/DetailPage/DetailPage'
 import { SearchContext } from './context/SearchContext'
-import type { Country, Codes } from './types'
+import type { Country, Codes, Theme } from './types'
 import { ThemeContext } from './context/ThemeContext'
 import { useLocalStorage } from './hooks/useLocalStorage'
 
@@ -16,7 +16,7 @@ function App() {
   const [isFetched, setIsFetched] = useState(false);
   const [codes, setCodes] = useState<Codes[]>([]);
   const [codesAreFetched, setCodesAreFetched] = useState(false);
-  const [theme, setTheme] = useLocalStorage("theme", "Light");
+  const [theme, setTheme] = useLocalStorage<Theme>("theme", "Light");
   const { data: dataCountries, loading: loadingCountries, error: errorCountries } = useFetch<Country[]>("https://restcountries.com/v3.1/all?status=true&fields=name,population,region,capital,flags,subregion,currencies,languages,borders,tld");
   const { data: dataCodes, loading: loadingCodes, error: errorCodes } = useFetch<Codes[]>("https://restcountries.com/v3.1/all?status=true&fields=name,cca3");
 
@@ -101,7 +101,7 @@ function App() {
   }
 
   function toggleTheme() {
-    setTheme(prevTheme => (prevTheme === "Light" ? "Dark" : "Light"));
+    setTheme((prevTheme: Theme)  => (prevTheme === "Light" ? "Dark" : "Light"));
   }
 
   return (
