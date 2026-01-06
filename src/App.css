@@ -1,11 +1,36 @@
 #root {
   background-color: hsl(0, 0%, 98%);
+  color: hsl(200, 15%, 8%);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
+}
+
+body {
+    font-family: "Nunito Sans", sans-serif;
+    background-color: hsl(0, 0%, 99%);
+    color: hsl(200, 15%, 8%);
+    margin: 0;
+}
+
+body.dark-mode {
+    background-color: hsl(207, 26%, 17%);
+    color: hsl(0, 100%, 100%);
+}
+
+#header-bar.dark-mode,
+#search-bar.dark-mode,
+#root.dark-mode,
+#search-bar input.dark-mode,
+#search-bar select.dark-mode,
+.card.dark-mode,
+#back-button.dark-mode,
+.new-country.dark-mode {
+    background-color: hsl(209, 23%, 22%);
+    color: hsl(0, 100%, 100%);
 }
 
 #header-bar {
@@ -149,6 +174,20 @@ select {
   min-width: 6rem;
   max-height: 2rem;
   margin-bottom: 5px;
+}
+
+#back-button,
+.new-country {
+    background-color: hsl(0, 0%, 99%);
+    font-size: 1rem;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+}
+
+#back-button {
+    padding: 9px 35px;
+    margin: 10px 0px 0 60px;
 }
 
 @media (min-width: 751px) {

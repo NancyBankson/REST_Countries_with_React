@@ -42,3 +42,6 @@ export interface Codes {
     cca3: string;
     name: Name;
 }
+
+export type Theme =
+    "Light" | "Dark";

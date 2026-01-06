@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Headerbar } from './components/Headerbar'
 import { useFetch } from './hooks/useFetch'
@@ -6,7 +6,9 @@ import './App.css'
 import { HomePage } from './pages/HomePage/HomePage'
 import { DetailPage } from './pages/DetailPage/DetailPage'
 import { SearchContext } from './context/SearchContext'
-import type { Country, Codes } from './types'
+import type { Country, Codes, Theme } from './types'
+import { ThemeContext } from './context/ThemeContext'
+import { useLocalStorage } from './hooks/useLocalStorage'
 
 function App() {
   const [countries, setCountries] = useState<Country[]>([]);
@@ -14,8 +16,20 @@ function App() {
   const [isFetched, setIsFetched] = useState(false);
   const [codes, setCodes] = useState<Codes[]>([]);
   const [codesAreFetched, setCodesAreFetched] = useState(false);
+  const [theme, setTheme] = useLocalStorage("theme", "Light");
   const { data: dataCountries, loading: loadingCountries, error: errorCountries } = useFetch<Country[]>("https://restcountries.com/v3.1/all?status=true&fields=name,population,region,capital,flags,subregion,currencies,languages,borders,tld");
   const { data: dataCodes, loading: loadingCodes, error: errorCodes } = useFetch<Codes[]>("https://restcountries.com/v3.1/all?status=true&fields=name,cca3");
+
+  useEffect(() => {
+    const rootElement = document.getElementById('root')
+    if (theme === "Dark") {
+      document.body.classList.add("dark-mode");
+      rootElement!.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove("dark-mode");
+      rootElement!.classList.remove('dark-mode');
+    }
+  }, [theme]);
 
   if (loadingCountries) {
     return (
@@ -74,6 +88,7 @@ function App() {
     setFilteredCountries(filterCountries);
   }
 
+  // Return countries based on filter selector
   function onFilter(filterValue: string) {
     const filterCountries = countries.filter(country => {
       if (filterValue === "") {
@@ -85,15 +100,22 @@ function App() {
     setFilteredCountries(filterCountries)
   }
 
+  function toggleTheme() {
+    setTheme(prevTheme => (prevTheme === "Light" ? "Dark" : "Light"));
+  }
+
   return (
     <>
-      <SearchContext.Provider value={{ filteredCountries, countries, codes, onSearch, onFilter }}>
-        <Headerbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/country/:name" element={<DetailPage />} />
-        </Routes>
-      </SearchContext.Provider>
+      <ThemeContext value={{ theme, toggleTheme }}>
+        <SearchContext.Provider value={{ filteredCountries, countries, codes, onSearch, onFilter }}>
+          <Headerbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/country/:name" element={<DetailPage />} />
+          </Routes>
+        </SearchContext.Provider>
+      </ThemeContext>
+
     </>
   )
 }
