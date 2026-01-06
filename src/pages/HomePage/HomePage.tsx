@@ -25,7 +25,7 @@ export function HomePage() {
   return (
     <>
       <Searchbar />
-      <div id="card-holder">
+      <div id="card-holder" className="dark-mode">
         {filteredCountries.map((country) => (
           <CountryCard
             key={country.name.common}
