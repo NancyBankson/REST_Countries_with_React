@@ -73,7 +73,7 @@ export function DetailPage() {
 
     return (
         <>
-            <button id="back-button" className={backButtonClasses} onClick={() => navigate(-1)} >←  Back</button>
+            <button id="back-button" className={backButtonClasses} onClick={() => navigate("/")} >←  Back</button>
             <div key={country.name.common} className="big-display">
                 <img src={country.flags.png} alt={country.flags.alt} />
                 <div id="display-body">
