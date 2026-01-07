@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+   "homepage": "https://nancybankson.github.io/REST_Countries_with_React/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -30,6 +31,5 @@
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4"
-  },
-  "homepage": "https://nancybankson.github.io/REST_Countries_with_React/"
+  }
 }
