@@ -4,7 +4,7 @@
 
 For this project, I refactored my previous Frontend Mentor Project with React.  This project is an educational website that fetched data on countries from an API and displayed that information.  This project was based on a Frontend Mentor challenge, REST Countries API with color theme switcher.  The challenge can be found here: https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca.  The project utilized React and included the use of React hooks such as useState, useEffect, and useContext as well as custom hooks.  Context was used to avoid prop drilling.  React Router was also used to navigate to country detail pages.  The custom hook, useFetch was used to fetch the data from the REST Countries API.  The home page displays basic information for each country and allows the user to search for countries and filter by region.  When a country is clicked, the user is taken to a detail page.  From the display page, border country buttons were included so that the user could click and display information on the border countries.  The project also required light modes and dark modes that could be toggled.  These modes were saved in local storage so that the page would load with the user's preferred theme.
 
-The project was deployed and can be accessed at https://nancybankson.github.io/REST_Countries_with_React.
+The project was deployed and can be accessed at http://restcountrieswithreactproject.netlify.app
 
 ## Features
 
