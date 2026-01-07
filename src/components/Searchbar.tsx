@@ -8,7 +8,7 @@ export function Searchbar() {
 
     if (!newSearchContext) {
         return (
-            <p>Error</p>
+            <p>An error occured with search</p>
         )
     }
 

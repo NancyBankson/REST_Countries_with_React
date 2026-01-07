@@ -29,7 +29,7 @@ export function DetailPage() {
 
     if (!newCodes) {
         return (
-            <p>Error</p>
+            <p>An error occured fetching country codes...</p>
         )
     }
 

@@ -8,7 +8,7 @@ The project was deployed and can be accessed at https://nancybankson.github.io/R
 
 ## Features
 
-Implementation of this project required: 
+Implementation of this project was similar to the React Advanced assessment: 
 
 1. State Management & Data Fetching
 
@@ -24,41 +24,25 @@ You must create and implement at least two custom hooks:
 
 3. Global State with Context API
 
-  - Create a FavoritesContext to manage the user’s list of favorite recipes globally.
-  - The context must provide:
-    - A list of favorite recipe IDs.
-    - A function to add a recipe to favorites.
-    - A function to remove a recipe from favorites.
-    A function to check if a recipe is already in favorites.
-  - This context should use your useLocalStorage hook internally to persist the favorites list across browser sessions.
+  - Create a SearchContext to manage the user’s search and filters.
+  - Create ThemeContext to store and distribute dark and light modes.
 
 4. Routing
 
 Your application must include the following pages and routing logic:
 
   - Home Page (/):
-    - Displays a grid or list of all available recipe categories fetched from the API.
-    - Each category should be a link that navigates to its respective category page.
+    - Displays cards for each country with basic information.
+    - Allows search by country name.
+    - Allows filtering of countries by region.
 
-  - Category Page (/category/[categoryName]):
-    - A dynamic route that displays all recipes belonging to the category specified in the URL (e.g., /category/Seafood).
-    - Each recipe shown should be a link to its detailed recipe page.
-
-  - Recipe Detail Page (/recipe/[recipeId]):
-    - A dynamic route that fetches and displays the full details for a single recipe (image, ingredients, instructions, etc.).
-    - This page must include a button to “Add to Favorites” or “Remove from Favorites”. The button’s state and action should be handled by your FavoritesContext.
-
-  - Favorites Page (/favorites):
-    - Displays a list of all recipes that the user has marked as a favorite.
-    - If the user has no favorites, this page should display a message prompting them to browse and add some.
-
-  - Search Functionality:
-    - A search bar, likely in a shared Navbar, that allows users to search for recipes by name.
-    - Submitting a search should navigate the user to a search results page (e.g., /search?query=Arrabiata). This page will display the results of the search query.
+  - Detail Page (/country/[country.name.common]):
+    - A dynamic route that fetches and displays the multiple details for selected country.
+    - Border countries are listed as clickable buttons.
 
 5. Components & UI
 
-  - Create reusable, well-styled components (e.g., RecipeCard, Navbar, Spinner, ErrorMessage).
+  - Create reusable, well-styled components (e.g., CountryCard, Headerbar, Searchbar, Spinner, ErrorMessage).
   - The application should be visually appealing and responsive. Use of a CSS framework, CSS-in-JS, or CSS Modules is up to you.
 
 ## Tools
@@ -79,5 +63,4 @@ npm run dev
 
 ## Reflection
 
-This project required numerous hours to complete.  I encountered a number of challenges while writing the code.  The first was dealing with the API requirement to limit fetches to 10 fields.  I was able to fetch all the data needed for the detail page in one fetch, but because the border countries were given in codes, rather than country name, I had to also fetch codes and country names.  The API did not give the data for the Frontend Mentor challenge in a straight-forward manner.  For names and flags I had to extract the necessary data from objects within the object properties.  For some I was able to make interfaces to use in the class properties, but for others, I had to extract values using the Object.values method.  My classmates, Ervin, Hasna, and Rivathi helped me include the Object.values method.  There were also challenges with the display.  Some needed comma separated lists.  To display these lists, I had to write for loops to create a string with comma and space separations.  Once I had all the code written in TypeScript and the data was displaying properly, I had to spend a significant amount of time making the style correct.  At first, I tried using Bootstrap grid to make the pages responsive, but Bootstrap caused other problems, such as making the input and select elements stretch across the screen.  Since I wasn't able to override the CSS, I abandoned using Bootstrap grid and used regular flex-box.  Bootstrap was helpful for making the cards on the first page.  The dark mode and light mode options also created a challenge.  It was easy to change the elements written in the HTML file, but for elements created dynamically, it was more challenging.
-The project was fun, but took a long time to complete.  I enjoyed the hours I spent on the TypeScript portion and found overcoming challenges satisfying, but found the many hours I spent on CSS quite frustrating.
+After completing two skill based assessments using React, this project went smoothly.  I chose to refactor the REST Country App I did as a previous project.  I preferred this project because it was a bit more challenging than the other projects, but some of the work was already done, such as the CSS.  I found that this project was easier to do in React than vanilla TypeScript, HTML, and CSS.  The hooks, context, and React Router tools helped to make this project a success without much trouble.  Thanks to my class for helping me with a last minute type error. 

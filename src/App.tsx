@@ -9,6 +9,8 @@ import { SearchContext } from './context/SearchContext'
 import type { Country, Codes, Theme } from './types'
 import { ThemeContext } from './context/ThemeContext'
 import { useLocalStorage } from './hooks/useLocalStorage'
+import { Spinner } from './components/Spinner'
+import { ErrorMessage } from './components/ErrorMessage'
 
 function App() {
   const [countries, setCountries] = useState<Country[]>([]);
@@ -35,14 +37,14 @@ function App() {
     return (
       <div className="loading">
         Loading countries...
-        {/* <Spinner /> */}
+        <Spinner />
       </div>
     )
   }
   if (errorCountries) {
     return (
       <div>
-        {/* <ErrorMessage /> */}
+        <ErrorMessage />
         Error: {errorCountries.message}
       </div>
     )
@@ -58,14 +60,14 @@ function App() {
     return (
       <div className="loading">
         Loading codes...
-        {/* <Spinner /> */}
+        <Spinner />
       </div>
     )
   }
   if (errorCodes) {
     return (
       <div>
-        {/* <ErrorMessage /> */}
+        <ErrorMessage />
         Error: {errorCodes.message}
       </div>
     )

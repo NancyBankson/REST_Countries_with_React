@@ -8,7 +8,7 @@ export function HomePage() {
 
   if (!newCountries) {
     return (
-      <p>Error</p>
+      <p>An error occured retrieving countries...</p>
     )
   }
 
@@ -17,7 +17,7 @@ export function HomePage() {
   if (!filteredCountries) {
     return (
       <div>
-        <p>Error</p>
+        <p>An error occured retrieving countries...</p>
       </div>
     )
   }
