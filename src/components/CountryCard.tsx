@@ -14,7 +14,7 @@ export function CountryCard({ country }: { country: Country }) {
                 <div className="card-body">
                     <h2 className="card-title">{country.name.common}</h2>
                     <p>Population: <span className="text">{country.population}</span></p>
-                    <p>Region: <span className="text"></span>{country.region}</p>
+                    <p>Region: <span className="text">{country.region}</span></p>
                     <p>Capital: <span className="text">{country.capital}</span></p>
                 </div>
             </div>
